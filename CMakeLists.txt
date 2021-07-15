@@ -14,27 +14,12 @@ add_executable(${EXECUTABLE_NAME})
 # Link with libugba
 # -----------------
 
-# Feel free to remove the option of the two provided that you don't need.
+get_filename_component(UGBA_PATH "libugba" ABSOLUTE)
 
-if(TRUE)
-    # 1) This code is used in case ugba is in an arbitrary location on your
-    #    hard drive.
-
-    # Get absolute path to default libugba folder
-    if("${UGBA_PATH}" STREQUAL "")
-        get_filename_component(UGBA_PATH .. ABSOLUTE)
-    endif()
-
-    if(EXISTS ${UGBA_PATH})
-        add_subdirectory(${UGBA_PATH} libugba)
-    else()
-        message(FATAL_ERROR "ugba folder not found")
-    endif()
+if(EXISTS ${UGBA_PATH})
+    add_subdirectory(${UGBA_PATH} libugba)
 else()
-    # 2) This code is used in case the ugba repository is added as a submodule
-    #    of your repository.
-
-    add_subdirectory(ugba)
+    message(FATAL_ERROR "ugba folder not found")
 endif()
 
 target_link_libraries(${EXECUTABLE_NAME} libugba)
@@ -42,28 +27,13 @@ target_link_libraries(${EXECUTABLE_NAME} libugba)
 # Link with UMOD Player
 # ---------------------
 
-# Feel free to remove the option of the two provided that you don't need.
-
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/audio)
-    if(TRUE)
-        # 1) This code is used in case libugba is in an arbitrary location on
-        #    your hard drive.
+    get_filename_component(UMOD_PLAYER_PATH "umod-player" ABSOLUTE)
 
-        if("${UMOD_PLAYER_PATH}" STREQUAL "")
-            get_filename_component(UMOD_PLAYER_PATH ../../umod-player ABSOLUTE)
-        endif()
-
-        if(EXISTS ${UMOD_PLAYER_PATH})
-            add_subdirectory(${UMOD_PLAYER_PATH} umod_player)
-        else()
-            message(FATAL_ERROR "UMOD Player repository not found")
-        endif()
-
+    if(EXISTS ${UMOD_PLAYER_PATH})
+        add_subdirectory(${UMOD_PLAYER_PATH} umod_player)
     else()
-        # 2) This code is used in case the UMOD Player repository is added as a
-        #    submodule of your repository.
-
-        add_subdirectory(umod-player)
+        message(FATAL_ERROR "UMOD Player repository not found")
     endif()
 
     target_link_libraries(${EXECUTABLE_NAME} umod_player)
