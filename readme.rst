@@ -5,8 +5,8 @@ libugba template
 --------------
 
 This is a template of how to integrate `libugba`_ and `UMOD Player`_ in your
-own project by adding them as submodules. Check `UGBA`_ for examples of what the
-library can do.
+own project by adding them as submodules. Check `UGBA Testing`_ for examples of
+what the library can do.
 
 Feel free to edit the ``CMakeLists.txt`` to enable the integration of graphics
 and data using **grit** and **bin2c** respectively.
@@ -64,5 +64,5 @@ Then you can build the template:
     make -j`nproc`
 
 .. _libugba: https://github.com/AntonioND/libugba
-.. _UGBA: https://github.com/AntonioND/ugba
+.. _UGBA Testing: https://github.com/AntonioND/ugba-testing
 .. _UMOD Player: https://github.com/AntonioND/umod-player
