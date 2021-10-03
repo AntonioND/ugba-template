@@ -40,8 +40,8 @@ ${SUPERFAMICONV} map \
     --tile-width 8 --tile-height 8 \
     --tile-base-offset 0 \
     --palette-base-offset 0 \
-    --map-width 64 --map-height 64 \
-    --split-width 64 --split-height 64 \
+    --map-width 32 --map-height 32 \
+    --split-width 32 --split-height 32 \
     --in-image ${IN}/city.png \
     --in-palette ${OUT}/city_palette.bin \
     --in-tiles ${OUT}/city_tiles.bin \

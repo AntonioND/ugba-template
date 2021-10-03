@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     SWI_CpuSet_Copy16(city_map_bin, (void *)CITY_MAP_BASE, city_map_bin_size);
 
     // Setup background
-    BG_RegularInit(0, BG_REGULAR_512x512, BG_16_COLORS,
+    BG_RegularInit(0, BG_REGULAR_256x256, BG_16_COLORS,
                    CITY_TILES_BASE, CITY_MAP_BASE);
 
     int x = 80, y = 120;
