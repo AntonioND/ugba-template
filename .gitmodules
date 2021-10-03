@@ -4,3 +4,6 @@
 [submodule "umod-player"]
 	path = umod-player
 	url = https://github.com/AntonioND/umod-player
+[submodule "SuperFamiconv"]
+	path = SuperFamiconv
+	url = https://github.com/Optiroc/SuperFamiconv
