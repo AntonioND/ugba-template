@@ -11,9 +11,6 @@ set(GAME_NAME_GBA "${GAME_NAME}-gba")
 
 add_executable(${GAME_NAME_GBA})
 target_link_libraries(${GAME_NAME_GBA} libugba_gba)
-if(NOT USE_DEVKITARM)
-    target_link_libraries(${GAME_NAME_GBA} libsysgba_gba)
-endif()
 target_link_libraries(${GAME_NAME_GBA} umod_player_gba)
 
 # Source code, include directories and global definitions
@@ -26,9 +23,6 @@ target_include_directories(${GAME_NAME_GBA} PRIVATE ${INCLUDE_PATHS})
 # -------------
 
 gba_set_compiler_options(${GAME_NAME_GBA})
-if(NOT USE_DEVKITARM)
-    libsysgba_set_compiler_options(${GAME_NAME_GBA})
-endif()
 
 set(ARGS_C -Wall -Wextra -Wno-unused-parameter)
 
