@@ -33,19 +33,6 @@ option(USE_DEVKITARM "Use devkitARM to build GBA binaries" ON)
 add_subdirectory(libugba)
 add_subdirectory(umod-player)
 
-# Toolchain selection macros
-# --------------------------
-
-get_filename_component(PROJECT_BASE_PATH "." ABSOLUTE)
-
-macro(toolchain_gba)
-    include(${PROJECT_BASE_PATH}/cmake/toolchain_gba.cmake)
-endmacro()
-
-macro(toolchain_sdl2)
-    include(${PROJECT_BASE_PATH}/cmake/toolchain_sdl2.cmake)
-endmacro()
-
 # Add source code files
 # ---------------------
 
