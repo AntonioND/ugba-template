@@ -2,9 +2,15 @@
 #
 # SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2021, Antonio Niño Díaz
+# Copyright (c) 2021-2022, Antonio Niño Díaz
 
 set -e
+
+# Paths to tools
+
+export SUPERFAMICONV=${PWD}/SuperFamiconv/bin/superfamiconv
+export UMOD_PACKER=${PWD}/umod-player/build/packer/umod_packer
+export BIN2C=${PWD}/tools/build/bin2c/bin2c
 
 # Build tools
 
@@ -14,21 +20,19 @@ cmake ..
 make
 popd
 
-pushd SuperFamiconv
-rm -rf build ; mkdir build ; cd build
-cmake ..
-make -j`nproc`
-popd
+if [ ! -d "${SUPERFAMICONV}" ]; then
+    pushd SuperFamiconv
+    make -j`nproc`
+    popd
+fi
 
-pushd umod-player
-rm -rf build ; mkdir build ; cd build
-cmake ..
-make
-popd
-
-# Paths to tools
-
-export SUPERFAMICONV=SuperFamiconv/build/superfamiconv
+if [ ! -d "${UMOD_PACKER}" ]; then
+    pushd umod-player
+    rm -rf build ; mkdir build ; cd build
+    cmake ..
+    make
+    popd
+fi
 
 # Prepare destination folder
 
@@ -46,7 +50,7 @@ bash graphics/convert.sh ${OUT_DIR_GRAPHICS}
 
 mkdir ${OUT_DIR}/audio
 
-umod-player/build/packer/umod_packer \
+${UMOD_PACKER} \
     ${OUT_DIR}/audio/umod_pack.bin \
     ${OUT_DIR}/audio/umod_pack_info.h \
     audio/*.mod \
@@ -62,7 +66,7 @@ for dir in $(find built_assets -type d)
 do
     for f in $(find $dir -maxdepth 1 -iname *.bin)
     do
-        tools/build/bin2c/bin2c $f "$dir"
+        ${BIN2C} $f "$dir"
     done
 done
 
