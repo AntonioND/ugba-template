@@ -59,6 +59,9 @@ This will build the GBA and host targets at the same time without **devkitPro**:
     cmake .. -DUSE_DEVKITARM=OFF
     make -j`nproc`
 
+To override the autodetected location of the cross compiler, you can add
+``-DARM_GCC_PATH=/path/to/folder/`` to the ``cmake`` command.
+
 .. _libugba: https://github.com/AntonioND/libugba
 .. _UGBA Testing: https://github.com/AntonioND/ugba-testing
 .. _UMOD Player: https://github.com/AntonioND/umod-player
