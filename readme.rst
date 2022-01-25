@@ -27,7 +27,7 @@ Just run the following commands:
     bash assets.sh
     mkdir build
     cd build
-    cmake ..
+    cmake .. -DBUILD_GBA=OFF
     make -j`nproc`
 
 3. Build for GBA
@@ -47,7 +47,7 @@ This will build the GBA and host targets at the same time with **devkitPro**:
 
     mkdir build
     cd build
-    cmake .. -DBUILD_GBA=ON
+    cmake ..
     make -j`nproc`
 
 This will build the GBA and host targets at the same time without **devkitPro**:
@@ -56,7 +56,7 @@ This will build the GBA and host targets at the same time without **devkitPro**:
 
     mkdir build
     cd build
-    cmake .. -DBUILD_GBA=ON -DUSE_DEVKITARM=OFF
+    cmake .. -DUSE_DEVKITARM=OFF
     make -j`nproc`
 
 .. _libugba: https://github.com/AntonioND/libugba
