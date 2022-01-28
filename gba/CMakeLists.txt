@@ -9,28 +9,30 @@ ugba_toolchain_gba()
 
 set(GAME_NAME_GBA "${GAME_NAME}-gba")
 
-add_executable(${GAME_NAME_GBA})
-target_link_libraries(${GAME_NAME_GBA} libugba_gba)
-target_link_libraries(${GAME_NAME_GBA} umod_player_gba)
+set(ELF_FILE "${GAME_NAME_GBA}.elf")
+
+add_executable(${ELF_FILE})
+target_link_libraries(${ELF_FILE} libugba_gba)
+target_link_libraries(${ELF_FILE} umod_player_gba)
 
 # Source code, include directories and global definitions
 # -------------------------------------------------------
 
-target_sources(${GAME_NAME_GBA} PRIVATE ${ALL_FILES_SOURCE})
-target_include_directories(${GAME_NAME_GBA} PRIVATE ${INCLUDE_PATHS})
+target_sources(${ELF_FILE} PRIVATE ${ALL_FILES_SOURCE})
+target_include_directories(${ELF_FILE} PRIVATE ${INCLUDE_PATHS})
 
 # Build options
 # -------------
 
-gba_set_compiler_options(${GAME_NAME_GBA})
+gba_set_compiler_options(${ELF_FILE})
 
 set(ARGS_C -Wall -Wextra -Wno-unused-parameter)
 
-target_compile_options(${GAME_NAME_GBA} PRIVATE
+target_compile_options(${ELF_FILE} PRIVATE
     $<$<COMPILE_LANGUAGE:C>:${ARGS_C}>
 )
 
-target_link_options(${GAME_NAME_GBA} PRIVATE
+target_link_options(${ELF_FILE} PRIVATE
     -flto
     -Wno-stringop-overflow -Wno-stringop-overread
 )
@@ -38,7 +40,7 @@ target_link_options(${GAME_NAME_GBA} PRIVATE
 # Generate GBA ROM from the ELF file
 # ----------------------------------
 
-make_gba_rom(${GAME_NAME_GBA} ${GAME_NAME_GBA} "UGBA-TEMPLATE" "UGBA")
+make_gba_rom(${ELF_FILE} ${GAME_NAME_GBA} "UGBA-TEMPLATE" "UGBA")
 
 install(
     FILES
